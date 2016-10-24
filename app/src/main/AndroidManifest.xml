@@ -3,6 +3,9 @@
     package="news.androidtv.launchonboot" >
 
     <!-- To handle boot completes -->
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
