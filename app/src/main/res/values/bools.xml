@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="DEBUG_FLAG_TEST_BUTTON">true</bool>
+</resources>
