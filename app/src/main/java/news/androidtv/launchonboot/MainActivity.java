@@ -12,6 +12,7 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.felkertech.settingsmanager.SettingsManager;
 
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         ((Switch) findViewById(R.id.switch_live_channels)).setChecked(
                 mSettingsManager.getBoolean(SettingsManagerConstants.LAUNCH_LIVE_CHANNELS));
+        ((TextView) findViewById(R.id.text_package_name))
+                .setText(mSettingsManager.getString(SettingsManagerConstants.LAUNCH_ACTIVITY));
+
         ((Switch) findViewById(R.id.switch_live_channels)).setOnCheckedChangeListener
                 (new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -56,14 +60,16 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button_select_app).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, android.R.style.Theme_Material_Dialog))
+                new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, android.R.style.Theme_Material_Light_Dialog))
                         .setTitle("Select an app")
                         .setItems(getAppNames(getLeanbackApps()), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                String packageName = getPackageName(getLeanbackApps().get(which));
                                 mSettingsManager.setString(SettingsManagerConstants.LAUNCH_ACTIVITY,
-                                        getPackageName(getLeanbackApps().get(which)));
-
+                                        packageName);
+                                ((TextView) findViewById(R.id.text_package_name))
+                                        .setText(packageName);
                             }
                         })
                         .show();
@@ -94,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         return appNames;
     }
 
+    @Deprecated
     public String getActivityName(ResolveInfo resolveInfo) {
         return resolveInfo.activityInfo.name;
     }
