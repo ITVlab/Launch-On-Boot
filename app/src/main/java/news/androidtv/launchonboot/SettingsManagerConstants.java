@@ -6,4 +6,5 @@ package news.androidtv.launchonboot;
 
 public class SettingsManagerConstants {
     public static final String LAUNCH_LIVE_CHANNELS = "LAUNCH_LIVE_CHANNELS";
+    public static final String LAUNCH_ACTIVITY = "LAUNCH_ACTIVITY";
 }
