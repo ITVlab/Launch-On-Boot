@@ -10,6 +10,7 @@ import android.support.v7.view.menu.MenuAdapter;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private static final boolean DEBUG = true;
 
     private SettingsManager mSettingsManager;
+    private Switch mSwitchEnabled;
+    private Switch mSwitchLiveChannels;
+    private Button mButtonSelectApp;
+    private TextView mPackageName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +37,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mSettingsManager = new SettingsManager(this);
 
-        ((Switch) findViewById(R.id.switch_live_channels)).setChecked(
-                mSettingsManager.getBoolean(SettingsManagerConstants.LAUNCH_LIVE_CHANNELS));
-        ((TextView) findViewById(R.id.text_package_name))
-                .setText(mSettingsManager.getString(SettingsManagerConstants.LAUNCH_ACTIVITY));
+        mSwitchLiveChannels = ((Switch) findViewById(R.id.switch_live_channels));
+        mSwitchEnabled = ((Switch) findViewById(R.id.switch_enable));
+        mButtonSelectApp = (Button) findViewById(R.id.button_select_app);
+        mPackageName = ((TextView) findViewById(R.id.text_package_name));
 
-        ((Switch) findViewById(R.id.switch_live_channels)).setOnCheckedChangeListener
+        mSwitchEnabled.setChecked(
+                mSettingsManager.getBoolean(SettingsManagerConstants.BOOT_APP_ENABLED));
+        mSwitchLiveChannels.setChecked(
+                mSettingsManager.getBoolean(SettingsManagerConstants.LAUNCH_LIVE_CHANNELS));
+        mPackageName
+                .setText(mSettingsManager.getString(SettingsManagerConstants.LAUNCH_ACTIVITY));
+        updateSelectionView();
+
+        mSwitchEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mSettingsManager.setBoolean(
+                        SettingsManagerConstants.BOOT_APP_ENABLED, isChecked);
+                updateSelectionView();
+            }
+        });
+        mSwitchLiveChannels.setOnCheckedChangeListener
                 (new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mSettingsManager.setBoolean(
                         SettingsManagerConstants.LAUNCH_LIVE_CHANNELS, isChecked);
+                updateSelectionView();
             }
         });
 
@@ -57,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button_select_app).setOnClickListener(new View.OnClickListener() {
+        mButtonSelectApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, android.R.style.Theme_Material_Light_Dialog))
@@ -68,11 +90,24 @@ public class MainActivity extends AppCompatActivity {
                                 String packageName = getPackageName(getLeanbackApps().get(which));
                                 mSettingsManager.setString(SettingsManagerConstants.LAUNCH_ACTIVITY,
                                         packageName);
-                                ((TextView) findViewById(R.id.text_package_name))
-                                        .setText(packageName);
+                                mPackageName.setText(packageName);
                             }
                         })
                         .show();
+            }
+        });
+        mButtonSelectApp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                v.setBackgroundColor(hasFocus ? getResources().getColor(R.color.colorAccent) :
+                        getResources().getColor(R.color.colorPrimaryDark));
+            }
+        });
+        findViewById(R.id.button_test).setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                v.setBackgroundColor(hasFocus ? getResources().getColor(R.color.colorAccent) :
+                        getResources().getColor(R.color.colorPrimaryDark));
             }
         });
 
@@ -107,5 +142,24 @@ public class MainActivity extends AppCompatActivity {
 
     public String getPackageName(ResolveInfo resolveInfo) {
         return resolveInfo.activityInfo.packageName;
+    }
+
+    private void updateSelectionView() {
+        if (mSwitchEnabled.isChecked()) {
+            mSwitchLiveChannels.setEnabled(true);
+            findViewById(R.id.button_test).setEnabled(true);
+            if (mSwitchLiveChannels.isChecked()) {
+                mButtonSelectApp.setVisibility(GONE);
+                mPackageName.setVisibility(GONE);
+            } else {
+                mButtonSelectApp.setVisibility(View.VISIBLE);
+                mPackageName.setVisibility(View.VISIBLE);
+            }
+        } else {
+            mButtonSelectApp.setVisibility(GONE);
+            mPackageName.setVisibility(GONE);
+            mSwitchLiveChannels.setEnabled(false);
+            findViewById(R.id.button_test).setEnabled(false);
+        }
     }
 }

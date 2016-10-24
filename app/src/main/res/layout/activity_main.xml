@@ -13,13 +13,25 @@
 
     <Switch
         android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:id="@+id/switch_live_channels"
+        android:id="@+id/switch_enable"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_width="wrap_content"
+        android:text="Enabled"
+        android:layout_toRightOf="@id/switch_enable"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content" />
+    <Switch
+        android:layout_width="wrap_content"
+        android:id="@+id/switch_live_channels"
+        android:layout_below="@id/switch_enable"
         android:visibility="gone"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
         android:text="Launch Tv App on Boot?"
+        android:visibility="gone"
         android:layout_toRightOf="@id/switch_live_channels"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="16dp"
@@ -27,6 +39,8 @@
     <Button
         android:layout_width="wrap_content"
         android:id="@+id/button_select_app"
+        android:layout_below="@id/switch_live_channels"
+        android:layout_marginTop="16dp"
         android:background="@color/colorPrimaryDark"
         android:text="Select app"
         android:layout_height="wrap_content" />

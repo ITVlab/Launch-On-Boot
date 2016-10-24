@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/launch-on-boot.iml" filepath="$PROJECT_DIR$/launch-on-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Launch-On-Boot.iml" filepath="$PROJECT_DIR$/Launch-On-Boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
