@@ -1,7 +1,7 @@
 # Quick Links
 <img src='https://github-render.s3.amazonaws.com/prod/b7042dc5a29cc656cf93a1acad9d9663-render.png?AWSAccessKeyId=AKIAJILR36AMCOMBK3MQ&Signature=4ohy996yieB6PcU6suG8nsZOizw%3D&Expires=1478058773' />
 
-[Download on Google Play](https://play.google.com/store/apps/details?id=com.felkertech.ussenterprise)
+[Download on Google Play](https://play.google.com/store/apps/details?id=news.androidtv.launchonboot)
 
 # Launch-On-Boot
 _Launches a TV app when the device boots_
@@ -16,3 +16,5 @@ Want to make your Android TV act more like a dumb TV? Want to launch Sling TV im
 
 ## Screenshots
 <img src='https://raw.githubusercontent.com/ITVlab/Launch-On-Boot/master/promo/device-2016-10-24-191303.png' />
+
+<img src='https://raw.githubusercontent.com/ITVlab/Launch-On-Boot/master/promo/device-2016-10-24-192435.png' />
