@@ -1,5 +1,5 @@
 # Quick Links
-<img src='https://github-render.s3.amazonaws.com/prod/b7042dc5a29cc656cf93a1acad9d9663-render.png?AWSAccessKeyId=AKIAJILR36AMCOMBK3MQ&Signature=4ohy996yieB6PcU6suG8nsZOizw%3D&Expires=1478058773' />
+<img src='https://raw.githubusercontent.com/ITVlab/Launch-On-Boot/master/promo/banner2.png' />
 
 [Download on Google Play](https://play.google.com/store/apps/details?id=news.androidtv.launchonboot)
 
