@@ -3,7 +3,9 @@ package news.androidtv.launchonboot;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.tv.TvContract;
+import android.os.Build;
 import android.util.Log;
 
 import com.felkertech.settingsmanager.SettingsManager;
@@ -16,11 +18,17 @@ public class BootReceiver extends BroadcastReceiver {
     private static final String TAG = BootReceiver.class.getSimpleName();
     private static final boolean DEBUG = true;
 
+    private boolean mScreenOnListener = false;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (DEBUG) {
             Log.d(TAG, "Received intent");
             Log.d(TAG, intent.toString());
+        }
+        if (!mScreenOnListener) {
+            context.registerReceiver(this, new IntentFilter(Intent.ACTION_SCREEN_ON));
+            mScreenOnListener = true;
         }
 
         SettingsManager settingsManager = new SettingsManager(context);
@@ -32,7 +40,9 @@ public class BootReceiver extends BroadcastReceiver {
                 !settingsManager.getBoolean(SettingsManagerConstants.ON_WAKEUP)) {
             return;
         }
-        if (settingsManager.getBoolean(SettingsManagerConstants.LAUNCH_LIVE_CHANNELS)) {
+        if (settingsManager.getBoolean(SettingsManagerConstants.LAUNCH_LIVE_CHANNELS) &&
+                context.getResources().getBoolean(R.bool.TIF_SUPPORT) &&
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Intent i = new Intent(Intent.ACTION_VIEW, TvContract.Channels.CONTENT_URI);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);

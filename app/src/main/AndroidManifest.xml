@@ -40,7 +40,6 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
     </application>

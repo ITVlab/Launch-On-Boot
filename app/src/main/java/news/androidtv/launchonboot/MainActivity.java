@@ -3,6 +3,7 @@ package news.androidtv.launchonboot;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.media.tv.TvContract;
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, getLeanbackApps().toString());
             getAppNames(getLeanbackApps());
         }
+        registerReceiver(new BootReceiver(), new IntentFilter(Intent.ACTION_SCREEN_ON));
     }
 
     public List<ResolveInfo> getLeanbackApps() {
