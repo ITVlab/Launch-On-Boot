@@ -31,15 +31,15 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <RelativeLayout android:layout_width="match_parent"
         android:id="@+id/settings"
         android:paddingEnd="32dp"
         android:paddingTop="72dp"
         android:paddingStart="16dp"
         android:background="@color/darker"
         android:layout_toEndOf="@id/leftPane"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
         <Switch
             android:layout_width="wrap_content"
             android:id="@+id/switch_enable"
@@ -62,13 +62,27 @@
             android:text="Launch Tv App on Boot?"
             android:layout_toRightOf="@id/switch_live_channels"
             android:layout_below="@id/switch_enable"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content" />
+        <Switch
+            android:layout_width="wrap_content"
+            android:id="@+id/switch_wakeup"
+            android:layout_below="@id/switch_live_channels"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Launch when device wakes up?"
+            android:layout_toRightOf="@id/switch_wakeup"
+            android:layout_below="@id/switch_live_channels"
+            android:layout_marginTop="12dp"
             android:layout_marginLeft="16dp"
             android:layout_height="wrap_content" />
         <Button
             android:layout_width="wrap_content"
             android:id="@+id/button_select_app"
-            android:layout_below="@id/switch_live_channels"
+            android:layout_below="@id/switch_wakeup"
             android:layout_marginTop="16dp"
             android:background="@color/colorPrimaryDark"
             android:text="Select app"

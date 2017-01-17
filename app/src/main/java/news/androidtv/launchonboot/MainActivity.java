@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private SettingsManager mSettingsManager;
     private Switch mSwitchEnabled;
     private Switch mSwitchLiveChannels;
+    private Switch mSwitchWakeup;
     private Button mButtonSelectApp;
     private TextView mPackageName;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         mSwitchLiveChannels = ((Switch) findViewById(R.id.switch_live_channels));
         mSwitchEnabled = ((Switch) findViewById(R.id.switch_enable));
+        mSwitchWakeup = ((Switch) findViewById(R.id.switch_wakeup));
         mButtonSelectApp = (Button) findViewById(R.id.button_select_app);
         mPackageName = ((TextView) findViewById(R.id.text_package_name));
 
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 mSettingsManager.getBoolean(SettingsManagerConstants.BOOT_APP_ENABLED));
         mSwitchLiveChannels.setChecked(
                 mSettingsManager.getBoolean(SettingsManagerConstants.LAUNCH_LIVE_CHANNELS));
+        mSwitchWakeup.setChecked(
+                mSettingsManager.getBoolean(SettingsManagerConstants.ON_WAKEUP));
         mPackageName
                 .setText(mSettingsManager.getString(SettingsManagerConstants.LAUNCH_ACTIVITY));
         updateSelectionView();
@@ -67,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mSettingsManager.setBoolean(
                         SettingsManagerConstants.LAUNCH_LIVE_CHANNELS, isChecked);
+                updateSelectionView();
+            }
+        });
+        mSwitchWakeup.setOnCheckedChangeListener
+                (new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mSettingsManager.setBoolean(
+                        SettingsManagerConstants.ON_WAKEUP, isChecked);
                 updateSelectionView();
             }
         });

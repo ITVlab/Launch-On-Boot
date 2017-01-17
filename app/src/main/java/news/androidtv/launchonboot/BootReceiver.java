@@ -20,9 +20,16 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (DEBUG) {
             Log.d(TAG, "Received intent");
+            Log.d(TAG, intent.toString());
         }
+
         SettingsManager settingsManager = new SettingsManager(context);
         if (!settingsManager.getBoolean(SettingsManagerConstants.BOOT_APP_ENABLED)) {
+            return;
+        }
+        if (intent.getAction() != null &&
+                intent.getAction().equals(Intent.ACTION_USER_PRESENT) &&
+                !settingsManager.getBoolean(SettingsManagerConstants.ON_WAKEUP)) {
             return;
         }
         if (settingsManager.getBoolean(SettingsManagerConstants.LAUNCH_LIVE_CHANNELS)) {
