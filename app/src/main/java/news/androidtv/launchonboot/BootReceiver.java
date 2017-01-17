@@ -40,6 +40,11 @@ public class BootReceiver extends BroadcastReceiver {
                 !settingsManager.getBoolean(SettingsManagerConstants.ON_WAKEUP)) {
             return;
         }
+        if (intent.getAction() != null &&
+                intent.getAction().equals(Intent.ACTION_SCREEN_ON) &&
+                !settingsManager.getBoolean(SettingsManagerConstants.ON_WAKEUP)) {
+            return;
+        }
         if (settingsManager.getBoolean(SettingsManagerConstants.LAUNCH_LIVE_CHANNELS) &&
                 context.getResources().getBoolean(R.bool.TIF_SUPPORT) &&
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
