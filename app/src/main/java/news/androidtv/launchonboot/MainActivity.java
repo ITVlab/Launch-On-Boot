@@ -1,16 +1,12 @@
 package news.androidtv.launchonboot;
 
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
-import android.media.tv.TvContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.MenuAdapter;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -101,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, android.R.style.Theme_Material_Light_Dialog))
                         .setTitle("Select an app")
-                        .setItems(getAppNames(getLeanbackApps()), new DialogInterface.OnClickListener() {
+                        .setItems(getAppNames(getLauncherApps()), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                String packageName = getPackageName(getLeanbackApps().get(which));
+                                String packageName = getPackageName(getLauncherApps().get(which));
                                 mSettingsManager.setString(SettingsManagerConstants.LAUNCH_ACTIVITY,
                                         packageName);
                                 mPackageName.setText(packageName);
@@ -129,15 +125,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (DEBUG) {
-            Log.d(TAG, getLeanbackApps().toString());
-            getAppNames(getLeanbackApps());
+            Log.d(TAG, getLauncherApps().toString());
+            getAppNames(getLauncherApps());
         }
         registerReceiver(new BootReceiver(), new IntentFilter(Intent.ACTION_SCREEN_ON));
     }
 
-    public List<ResolveInfo> getLeanbackApps() {
+    public List<ResolveInfo> getLauncherApps() {
         final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LEANBACK_LAUNCHER);
+        // Change which category is used based on form factor.
+        if (getResources().getBoolean(R.bool.IS_TV)) {
+            mainIntent.addCategory(Intent.CATEGORY_LEANBACK_LAUNCHER);
+        } else {
+            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        }
         return getPackageManager().queryIntentActivities(mainIntent, 0);
     }
 

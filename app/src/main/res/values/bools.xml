@@ -2,4 +2,5 @@
 <resources>
     <bool name="DEBUG_FLAG_TEST_BUTTON">true</bool>
     <bool name="TIF_SUPPORT">false</bool>
+    <bool name="IS_TV">false</bool>
 </resources>
