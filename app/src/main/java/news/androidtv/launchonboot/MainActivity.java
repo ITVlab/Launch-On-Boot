@@ -154,11 +154,6 @@ public class MainActivity extends AppCompatActivity {
         return appNames;
     }
 
-    @Deprecated
-    public String getActivityName(ResolveInfo resolveInfo) {
-        return resolveInfo.activityInfo.name;
-    }
-
     public String getPackageName(ResolveInfo resolveInfo) {
         return resolveInfo.activityInfo.packageName;
     }
