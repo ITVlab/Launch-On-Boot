@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Launch on Boot</string>
     <string name="credits">This app lets users configure a specific app to launch whenever the device is rebooted.\n\nCreated by the Interactive Tv Lab.\nOpen sourced on GitHub.</string>
+    <string name="null_intent">Cannot find activity to launch</string>
 </resources>

@@ -70,10 +70,12 @@
             android:id="@+id/switch_wakeup"
             android:layout_below="@id/switch_live_channels"
             android:layout_marginTop="8dp"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
             android:text="Launch when device wakes up?"
+            android:visibility="gone"
             android:layout_toRightOf="@id/switch_wakeup"
             android:layout_below="@id/switch_live_channels"
             android:layout_marginTop="12dp"

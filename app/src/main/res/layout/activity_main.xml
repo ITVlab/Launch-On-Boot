@@ -54,12 +54,14 @@
         <Switch
             android:layout_width="wrap_content"
             android:id="@+id/switch_live_channels"
+            android:visibility="gone"
             android:layout_below="@id/switch_enable"
             android:layout_marginTop="8dp"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
             android:text="Launch Tv App on Boot?"
+            android:visibility="gone"
             android:layout_toRightOf="@id/switch_live_channels"
             android:layout_below="@id/switch_enable"
             android:layout_marginTop="12dp"
