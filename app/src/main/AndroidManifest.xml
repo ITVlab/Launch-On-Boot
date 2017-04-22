@@ -30,6 +30,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".OnboardingActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:theme="@style/Onboard" />
+
         <receiver
             android:enabled="true"
             android:name=".BootReceiver"

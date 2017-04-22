@@ -2,4 +2,12 @@
     <string name="app_name">Launch on Boot</string>
     <string name="credits">This app lets users configure a specific app to launch whenever the device is rebooted.\n\nCreated by the Interactive Tv Lab.\nOpen sourced on GitHub.</string>
     <string name="null_intent">Cannot find activity to launch</string>
+    <string name="onboarding_title_welcome">Welcome to \"Launch on Boot\"</string>
+    <string name="onboarding_description_welcome">This short guide will help you get started.</string>
+    <string name="onboarding_title_what">How this works</string>
+    <string name="onboarding_description_what">When you turn on your device, you can visit the launcher, or immediately open up the app you want.</string>
+    <string name="onboarding_title_tv">Live Channels</string>
+    <string name="onboarding_description_tv">It can be configured to open up any app, including playing Live TV right away</string>
+    <string name="onboarding_title_try">Try it out!</string>
+    <string name="onboarding_description_try">It\'s easy to get started. And you can turn it off at any time.</string>
 </resources>

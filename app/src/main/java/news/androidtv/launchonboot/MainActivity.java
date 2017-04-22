@@ -20,6 +20,7 @@ import com.felkertech.settingsmanager.SettingsManager;
 import java.util.List;
 
 import static android.view.View.GONE;
+import static news.androidtv.launchonboot.SettingsManagerConstants.ONBOARDING;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSettingsManager = new SettingsManager(this);
+        if (!mSettingsManager.getBoolean(ONBOARDING)) {
+            startActivity(new Intent(this, OnboardingActivity.class));
+        }
 
         mSwitchLiveChannels = ((Switch) findViewById(R.id.switch_live_channels));
         mSwitchEnabled = ((Switch) findViewById(R.id.switch_enable));
