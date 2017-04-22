@@ -37,10 +37,10 @@ public class OnboardingFragment extends android.support.v17.leanback.app.Onboard
             R.string.onboarding_description_try
     };
     private final int[] pageImages = {
-            R.drawable.banner,
-            R.drawable.banner,
-            R.drawable.banner,
-            R.drawable.banner
+            R.drawable.tv_animation_d,
+            R.drawable.tv_animation_a,
+            R.drawable.tv_animation_b,
+            R.drawable.tv_animation_c
     };
     private static final long ANIMATION_DURATION = 500;
     private Animator mContentAnimator;
@@ -114,7 +114,7 @@ public class OnboardingFragment extends android.support.v17.leanback.app.Onboard
             @Override
             public void onAnimationEnd(Animator animation) {
                 mContentView.setImageDrawable(getResources().getDrawable(pageImages[newPage]));
-//                ((AnimationDrawable) mContentView.getDrawable()).start();
+                ((AnimationDrawable) mContentView.getDrawable()).start();
             }
         });
         animators.add(fadeOut);
@@ -127,7 +127,7 @@ public class OnboardingFragment extends android.support.v17.leanback.app.Onboard
     @Override
     protected Animator onCreateEnterAnimation() {
         mContentView.setImageDrawable(getResources().getDrawable(pageImages[0]));
-//        ((AnimationDrawable) mContentView.getDrawable()).start();
+        ((AnimationDrawable) mContentView.getDrawable()).start();
         mContentAnimator = createFadeInAnimator(mContentView);
         return mContentAnimator;
     }
