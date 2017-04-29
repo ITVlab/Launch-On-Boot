@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mSettingsManager = new SettingsManager(this);
         if (!mSettingsManager.getBoolean(ONBOARDING)) {
             startActivity(new Intent(this, OnboardingActivity.class));
+            return;
         }
 
         mSwitchLiveChannels = ((Switch) findViewById(R.id.switch_live_channels));

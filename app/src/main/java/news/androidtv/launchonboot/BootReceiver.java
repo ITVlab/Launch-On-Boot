@@ -1,5 +1,6 @@
 package news.androidtv.launchonboot;
 
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -67,7 +68,11 @@ public class BootReceiver extends BroadcastReceiver {
                 return;
             }
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
+            try {
+                context.startActivity(i);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(context, R.string.null_intent, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
