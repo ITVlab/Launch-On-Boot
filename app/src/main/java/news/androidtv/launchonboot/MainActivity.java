@@ -38,11 +38,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSettingsManager = new SettingsManager(this);
-        if (!mSettingsManager.getBoolean(ONBOARDING)) {
+        if (!mSettingsManager.getBoolean(ONBOARDING) || true) {
             startActivity(new Intent(this, OnboardingActivity.class));
-            return;
         }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         mSwitchLiveChannels = ((Switch) findViewById(R.id.switch_live_channels));
         mSwitchEnabled = ((Switch) findViewById(R.id.switch_enable));
         mSwitchWakeup = ((Switch) findViewById(R.id.switch_wakeup));
@@ -69,22 +72,22 @@ public class MainActivity extends AppCompatActivity {
         });
         mSwitchLiveChannels.setOnCheckedChangeListener
                 (new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mSettingsManager.setBoolean(
-                        SettingsManagerConstants.LAUNCH_LIVE_CHANNELS, isChecked);
-                updateSelectionView();
-            }
-        });
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        mSettingsManager.setBoolean(
+                                SettingsManagerConstants.LAUNCH_LIVE_CHANNELS, isChecked);
+                        updateSelectionView();
+                    }
+                });
         mSwitchWakeup.setOnCheckedChangeListener
                 (new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mSettingsManager.setBoolean(
-                        SettingsManagerConstants.ON_WAKEUP, isChecked);
-                updateSelectionView();
-            }
-        });
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        mSettingsManager.setBoolean(
+                                SettingsManagerConstants.ON_WAKEUP, isChecked);
+                        updateSelectionView();
+                    }
+                });
 
         if (!getResources().getBoolean(R.bool.DEBUG_FLAG_TEST_BUTTON)) {
             findViewById(R.id.button_test).setVisibility(GONE);
