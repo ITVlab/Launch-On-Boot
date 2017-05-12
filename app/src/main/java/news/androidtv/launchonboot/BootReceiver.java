@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.media.tv.TvContract;
 import android.os.Build;
 import android.util.Log;
@@ -21,9 +20,19 @@ public class BootReceiver extends BroadcastReceiver {
     private static final boolean DEBUG = true;
 
     private boolean mScreenOnListener = false;
+    private Context mContext;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        mContext = context;
+        if (intent.getAction() != null &&
+                intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+            startForegroundService();
+        }
+        processEvent(context, intent);
+    }
+
+    public static void processEvent(Context context, Intent intent) {
         if (DEBUG) {
             Log.d(TAG, "Received intent");
             Log.d(TAG, intent.toString());
@@ -44,6 +53,11 @@ public class BootReceiver extends BroadcastReceiver {
         }
         if (intent.getAction() != null &&
                 intent.getAction().equals(Intent.ACTION_SCREEN_ON) &&
+                !settingsManager.getBoolean(SettingsManagerConstants.ON_WAKEUP)) {
+            return;
+        }
+        if (intent.getAction() != null &&
+                intent.getAction().equals(Intent.ACTION_DREAMING_STOPPED) &&
                 !settingsManager.getBoolean(SettingsManagerConstants.ON_WAKEUP)) {
             return;
         }
@@ -74,5 +88,10 @@ public class BootReceiver extends BroadcastReceiver {
                 Toast.makeText(context, R.string.null_intent, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void startForegroundService() {
+        Intent i = new Intent(mContext, DreamListenerService.class);
+        mContext.startService(i);
     }
 }

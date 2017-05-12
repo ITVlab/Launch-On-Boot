@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSettingsManager = new SettingsManager(this);
-        if (!mSettingsManager.getBoolean(ONBOARDING) || true) {
+        if (!mSettingsManager.getBoolean(ONBOARDING)) {
             startActivity(new Intent(this, OnboardingActivity.class));
         }
     }
@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
                         mSettingsManager.setBoolean(
                                 SettingsManagerConstants.ON_WAKEUP, isChecked);
                         updateSelectionView();
+                        if (isChecked) {
+                            startForegroundService();
+                        }
                     }
                 });
 
@@ -137,6 +140,10 @@ public class MainActivity extends AppCompatActivity {
             getAppNames(getLauncherApps());
         }
         registerReceiver(new BootReceiver(), new IntentFilter(Intent.ACTION_SCREEN_ON));
+
+        if (mSettingsManager.getBoolean(SettingsManagerConstants.ON_WAKEUP)) {
+            startForegroundService();
+        }
     }
 
     public List<ResolveInfo> getLauncherApps() {
@@ -183,5 +190,11 @@ public class MainActivity extends AppCompatActivity {
             mSwitchLiveChannels.setEnabled(false);
             findViewById(R.id.button_test).setEnabled(false);
         }
+    }
+
+    private void startForegroundService() {
+        // Ideally only starts once :thinking-emoji:
+        Intent i = new Intent(MainActivity.this, DreamListenerService.class);
+        startService(i);
     }
 }

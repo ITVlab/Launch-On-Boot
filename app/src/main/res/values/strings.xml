@@ -10,4 +10,6 @@
     <string name="onboarding_description_tv">It can be configured to open up any app, including playing Live TV right away</string>
     <string name="onboarding_title_try">Try it out!</string>
     <string name="onboarding_description_try">It\'s easy to get started. And you can turn it off at any time.</string>
+    <string name="notification_text">Waiting for events</string>
+    <string name="msg_wakeup">Launch when device wakes up?</string>
 </resources>
