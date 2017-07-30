@@ -58,8 +58,6 @@ public class OnboardingFragment extends android.support.v17.leanback.app.Onboard
     protected void onFinishFragment() {
         super.onFinishFragment();
         // Our onboarding is done
-        // Update the shared preferences
-        new SettingsManager(getActivity()).setBoolean(SettingsManagerConstants.ONBOARDING, true);
         // Let's go back to the MainActivity
         getActivity().finish();
     }
