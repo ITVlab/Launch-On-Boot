@@ -1,5 +1,7 @@
 package news.androidtv.launchonboot;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,7 +11,7 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.felkertech.settingsmanager.SettingsManager;
+import news.androidtv.launchonboot.SettingsManager;
 
 /**
  * Created by Nick on 10/23/2016.
@@ -69,10 +71,9 @@ public class BootReceiver extends BroadcastReceiver {
             context.startActivity(i);
         } else if (!settingsManager.getString(SettingsManagerConstants.LAUNCH_ACTIVITY).isEmpty()) {
             Intent i;
-            if (context.getResources().getBoolean(R.bool.IS_TV)) {
-                i = context.getPackageManager().getLeanbackLaunchIntentForPackage(
+            i = context.getPackageManager().getLeanbackLaunchIntentForPackage(
                         settingsManager.getString(SettingsManagerConstants.LAUNCH_ACTIVITY));
-            } else {
+            if (i == null) {
                 i = context.getPackageManager().getLaunchIntentForPackage(
                         settingsManager.getString(SettingsManagerConstants.LAUNCH_ACTIVITY));
             }
@@ -83,7 +84,15 @@ public class BootReceiver extends BroadcastReceiver {
             }
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try {
-                context.startActivity(i);
+                long restartTime = 1000*5;
+                PendingIntent restartIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_ONE_SHOT);
+                AlarmManager mgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                if (Build.VERSION.SDK_INT > 28) {
+                    mgr.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + restartTime, restartIntent);
+
+                } else {
+                    context.startActivity(i);
+                }
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(context, R.string.null_intent, Toast.LENGTH_SHORT).show();
             }

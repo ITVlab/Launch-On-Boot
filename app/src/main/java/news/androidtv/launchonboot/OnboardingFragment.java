@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.felkertech.settingsmanager.SettingsManager;
+import news.androidtv.launchonboot.SettingsManager;
 
 import java.util.ArrayList;
 

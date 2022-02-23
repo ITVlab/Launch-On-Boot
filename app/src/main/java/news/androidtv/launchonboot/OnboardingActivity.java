@@ -3,7 +3,7 @@ package news.androidtv.launchonboot;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.felkertech.settingsmanager.SettingsManager;
+import news.androidtv.launchonboot.SettingsManager;
 
 /**
  * Created by Nick on 4/22/2017.

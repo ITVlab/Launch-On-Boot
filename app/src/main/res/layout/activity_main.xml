@@ -46,7 +46,7 @@
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="Enabled"
+            android:text="@string/switch_enable"
             android:layout_toRightOf="@id/switch_enable"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="16dp"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="Launch Tv App on Boot?"
+            android:text="@string/switch_live_channels"
             android:visibility="gone"
             android:layout_toRightOf="@id/switch_live_channels"
             android:layout_below="@id/switch_enable"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="@string/msg_wakeup"
+            android:text="@string/switch_wakeup"
             android:layout_toRightOf="@id/switch_wakeup"
             android:layout_below="@id/switch_live_channels"
             android:layout_marginTop="12dp"
@@ -87,7 +87,7 @@
             android:layout_below="@id/switch_wakeup"
             android:layout_marginTop="16dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Select app"
+            android:text="@string/button_select_app"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
