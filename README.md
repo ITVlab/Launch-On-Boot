@@ -22,4 +22,4 @@ Want to make your Android TV act more like a dumb TV? Want to launch Sling TV im
 ## Screenshots
 <img src='promo/LaunchOnBoot-1.png' />
 
-<img src='promo/LaunchOnBoot-1.png' />
+<img src='promo/LaunchOnBoot-2.png' />
