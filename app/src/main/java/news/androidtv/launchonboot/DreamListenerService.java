@@ -50,7 +50,7 @@ public class DreamListenerService extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.banner))
                 .setContentIntent(pendingIntent)
-                .setCategory(Notification.CATEGORY_RECOMMENDATION)
+                .setCategory(Notification.CATEGORY_SERVICE)
                 .setPriority(Notification.PRIORITY_MIN)
                 .build();
 
