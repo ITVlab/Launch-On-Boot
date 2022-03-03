@@ -1,7 +1,12 @@
 # Quick Links
 <img src='https://raw.githubusercontent.com/ITVlab/Launch-On-Boot/master/promo/banner2.png' />
 
-[Download on Google Play](https://play.google.com/store/apps/details?id=news.androidtv.launchonboot)
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/news.androidtv.launchonboot/)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+     alt="Get it on Google Play"
+     height="80">](https://play.google.com/store/apps/details?id=news.androidtv.launchonboot)
 
 # Launch-On-Boot
 _Launches a TV app when the device boots_
@@ -15,6 +20,6 @@ This app allows the user to select a specific app to open when the device boots.
 Want to make your Android TV act more like a dumb TV? Want to launch Sling TV immediately. You should download this small utility app.
 
 ## Screenshots
-<img src='https://raw.githubusercontent.com/ITVlab/Launch-On-Boot/master/promo/device-2016-10-24-191303.png' />
+<img src='promo/LaunchOnBoot-1.png' />
 
-<img src='https://raw.githubusercontent.com/ITVlab/Launch-On-Boot/master/promo/device-2016-10-24-192435.png' />
+<img src='promo/LaunchOnBoot-1.png' />
